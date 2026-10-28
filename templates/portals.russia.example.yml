@@ -1,0 +1,50 @@
+# Copy to portals.yml ONLY on a new installation. For an existing setup, merge
+# the job_boards entries and adjust the existing filters. docs/RUSSIAN_SOURCES.md
+# Python is an example, not a requirement: change every query to your role.
+title_filter:
+  positive: ["python", "разработчик", "developer", "инженер", "engineer"]
+  negative: []
+
+# Empty filters deliberately keep all locations; source searches scope Russia.
+# Add city/remote requirements here when you know your preferred format.
+location_filter:
+  allow: []
+  block: []
+
+tracked_companies: []
+search_queries: []
+job_boards:
+  - name: HeadHunter Russia
+    provider: hh
+    careers_url: https://hh.ru/search/vacancy
+    hh:
+      text: "Python"
+      area: 113
+    max_pages: 3
+    enabled: true
+
+  - name: Habr Career Russia
+    provider: habr-career
+    careers_url: https://career.habr.com/vacancies
+    habr:
+      q: "Python"
+    max_pages: 3
+    enabled: true
+
+  # Enable after activating the plugin and adding SUPERJOB_APP_KEY to .env.
+  - name: SuperJob Russia
+    provider: superjob
+    superjob:
+      keyword: "Python"
+      # town: 4               # Moscow; omit for all cities
+    max_pages: 3
+    enabled: false
+
+  # Enable after activating the plugin and configuring the actual MCP endpoint.
+  - name: Hirify
+    provider: hirify
+    hirify:
+      query: "Python"
+      # arguments: {}         # filters copied from the server's tool schema
+    max_pages: 1
+    enabled: false

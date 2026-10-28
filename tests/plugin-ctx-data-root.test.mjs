@@ -100,3 +100,18 @@ test('a provider plugin merged into the scanner gets the data root too', async (
     rmSync(base, { recursive: true, force: true });
   }
 });
+
+test('merged keyed providers inherit health-probe page budgets without replacing their guarded transport', async () => {
+  const { base, codeRoot, dataRoot } = splitRoots(
+    'ctx-probe', 'provider',
+    'export default { provider: { id: "ctx-probe", fetch: async (entry, ctx) => [{ title: "t", url: "https://a.test/1", budget: ctx.maxPages, transportReplaced: ctx.fetch === "unsafe", paced: typeof ctx.sleep === "function" }] } };\n',
+  );
+  try {
+    const providers = new Map();
+    await mergeProviderPlugins(providers, { root: codeRoot, dataRoot });
+    const [job] = await providers.get('ctx-probe').fetch({}, { maxPages: 1, fetch: 'unsafe', sleep: async () => {} });
+    assert.equal(job.budget, 1);
+    assert.equal(job.paced, true);
+    assert.equal(job.transportReplaced, false);
+  } finally { rmSync(base, { recursive: true, force: true }); }
+});

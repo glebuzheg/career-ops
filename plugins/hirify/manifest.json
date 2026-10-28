@@ -1,0 +1,13 @@
+{
+  "id": "hirify",
+  "name": "Hirify MCP",
+  "version": "1.0.0",
+  "apiVersion": 1,
+  "description": "Import vacancy search results from your Hirify MCP connection.",
+  "hooks": ["provider"],
+  "requiredEnv": ["HIRIFY_MCP_URL"],
+  "optionalEnv": ["HIRIFY_KEY"],
+  "allowedHosts": ["hirify.me", "api.hirify.me", "mcp.hirify.me"],
+  "humanInTheLoop": true,
+  "homepage": "https://hirify.me/account/mcp-api"
+}

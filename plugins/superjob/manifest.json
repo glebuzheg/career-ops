@@ -1,0 +1,12 @@
+{
+  "id": "superjob",
+  "name": "SuperJob",
+  "version": "1.0.0",
+  "apiVersion": 1,
+  "description": "Search SuperJob vacancies through its registered application API.",
+  "hooks": ["provider"],
+  "requiredEnv": ["SUPERJOB_APP_KEY"],
+  "allowedHosts": ["api.superjob.ru"],
+  "humanInTheLoop": true,
+  "homepage": "https://api.superjob.ru"
+}

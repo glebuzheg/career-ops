@@ -1,5 +1,38 @@
 # Source Indexing Log
 
+## Russian-market personal fork — 2026-10-28
+
+These integrations were requested for a personal fork, not submitted as an
+upstream source proposal. Observed evidence, not a claim of upstream approval:
+
+- **Habr Career:** `GET https://career.habr.com/robots.txt` 200; no exclusion
+  covers `/vacancies`. `/v1`, candidate profiles and response routes are
+  excluded and never requested. The public `/vacancies?q=python` page returned
+  SSR `vacancies.list` (25 cards) and `vacancies.meta`. A live scan with the
+  actual provider/guarded transport also returned 25 cards. Company names,
+  canonical posting links, dates, cities/remote and stated salary are public.
+- **HeadHunter:** uses the official documented `GET api.hh.ru/vacancies`
+  search, not website scraping. The search and API robots request returned
+  403 and 404 respectively from this executor. API response mapping is tested
+  against the documented envelope; live discovery remains unverified here.
+- **SuperJob:** official `GET api.superjob.ru/2.0/vacancies/` without a key
+  returned 403 with instructions to register an application. The API docs
+  require `X-Api-App-Id`. API robots excludes general crawling, so this fork
+  supplies a separately activated registered-application plugin, not a public
+  provider for the upstream registry. No key was available for live testing.
+- **Hirify:** the public site and official `hirifyme/hirify-cli` describe MCP
+  and API access. Search cards include slug/title/company; public site links
+  use `/jobs/{slug}`. Account MCP settings and agent discovery intermittently
+  returned 503 from this executor. No authenticated MCP endpoint/key was
+  available; the adapter is protocol-fixture tested. Only search is invoked,
+  never metered vacancy read, contact reveal, profile transfer or applications.
+
+Queries and pagination limits are user-configured. None of these adapters
+asserts complete inventory beyond its stated page budget. Operator attribution:
+HH/HeadHunter (`hh.ru`), Habr Career (`career.habr.com`), SuperJob
+(`superjob.ru`), Hirify (`hirify.me`). Legal entities were not independently
+verified for an upstream registry listing.
+
 Every source that goes through the [Source Indexing Policy](../CONTRIBUTING.md#source-indexing-policy) gets an entry here: what was proposed, who proposed it, which rules were checked, and how they were verified. The point is that a stranger can reconstruct any decision from the outside without asking anyone.
 
 Two things this log deliberately is not: a ranking, and a promise. Rule 4 says it plainly — indexing is not endorsement, and distribution is not owed.

@@ -803,7 +803,13 @@ export async function mergeProviderPlugins(providersMap, { root, dataRoot = root
       providersMap.set(manifest.id, {
         id: manifest.id,
         detect: () => null, // (4) keyed providers never auto-detect
-        fetch: (entry) => hook.fetch(entry, ctx), // (3) ctx injection
+        // Carry probe/pacing hints but keep the plugin's credential-scoped,
+        // allowlisted transport: scanner fetch functions must not replace it.
+        fetch: (entry, scanCtx) => hook.fetch(entry, {
+          ...ctx,
+          ...(scanCtx?.maxPages !== undefined ? { maxPages: scanCtx.maxPages } : {}),
+          ...(typeof scanCtx?.sleep === 'function' ? { sleep: scanCtx.sleep } : {}),
+        }),
       });
     }
   } catch (err) {
