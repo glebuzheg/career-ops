@@ -206,6 +206,9 @@ It reformulates your CV; it must never fabricate it. A check in code stops a PDF
 (application key), and Hirify (MCP). See [setup and verification status](docs/RUSSIAN_SOURCES.md)
 and `templates/portals.russia.example.yml`.
 
+**macOS:** install Node.js 24 LTS, then double-click `Start Career Ops.command`
+to install missing dependencies and open the local UI. [Russian guide](docs/LOCAL_START_RU.md).
+
 **Fastest way, one command:**
 
 ```bash

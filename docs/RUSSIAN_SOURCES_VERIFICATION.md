@@ -93,3 +93,20 @@ both exited 0. `npm start -- -p 3000` started the production server on
 public tunnel were needed. This is an environment-local address, not a hosted
 public URL or the user's own computer's loopback. The optional `/api/health`
 route does not exist (404); readiness was checked on actual application pages.
+
+## macOS launcher
+
+The executable `Start Career Ops.command` installs missing root/web dependencies
+and delegates to the existing UI launcher. Its three tests passed: first install
+from a path containing spaces/Cyrillic, reuse of installed dependencies, and
+failure stopping before app startup. Existing CV/portals data remains unchanged.
+`bash -n`, updater-manifest tests and system-path coverage passed. An independent
+review found no Important defects in the launcher. It is Bash 3.2 compatible;
+native Finder launch cannot be verified on this Linux executor, and the guide
+documents `bash "Start Career Ops.command"` as a fallback.
+
+After the macOS launcher addition, `node test-all.mjs --quick --jobs 4` reported
+18,814 passing checks, four baseline failures and 22 warnings (exit 1). Remaining
+failures: Gemini network-message assertion, browser diagnostic fixture, missing
+LaTeX fontawesome package, and archive timeout. No new launcher failures occurred.
+The exported ZIP was checked to retain the launcher's executable bit.
