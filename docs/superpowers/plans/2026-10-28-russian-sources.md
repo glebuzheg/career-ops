@@ -41,7 +41,7 @@
 - [x] Verify live Habr discovery and report HH/Hirify/key limitations.
 - [x] Run syntax, config validation and full project suite; review whole branch.
 - [x] Preserve the reviewed changes in a local commit and export an archive/patch.
-- [ ] Remote fork/push is blocked: GitHub returned HTTP 403 Resource not accessible by integration for POST /forks.
+- [x] User created the fork in GitHub after API fork creation was denied; verified writable `glebuzheg/career-ops` and pushed `feat/russian-job-sources`.
 
 ## Progress and review
 

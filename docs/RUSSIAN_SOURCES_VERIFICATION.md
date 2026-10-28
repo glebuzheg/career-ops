@@ -76,8 +76,20 @@ was performed.
 
 ## Remote delivery
 
-GitHub identity is `glebuzheg`. Creating the requested fork with
+GitHub identity is `glebuzheg`. Initially, creating the requested fork with
 `gh repo fork career-ops-hq/career-ops --clone=false` returned HTTP 403:
-`Resource not accessible by integration`. `glebuzheg/career-ops` was not found
-afterwards. No remote fork, push, PR or merge is claimed. Changes are preserved
-locally and exported for review/application to a user-created fork.
+`Resource not accessible by integration`. The user subsequently created
+<https://github.com/glebuzheg/career-ops> through GitHub's web page. The fork was
+verified (`fork: true`, parent `career-ops-hq/career-ops`, writable by the current
+connection). Branch `feat/russian-job-sources` was pushed and the remote commit
+was verified as `5724f43437766cc4ce11e79450f855cddb14d221`.
+
+## Web interface launch
+
+`npm ci --ignore-scripts` and `NEXT_TELEMETRY_DISABLED=1 npm run build` in `web/`
+both exited 0. `npm start -- -p 3000` started the production server on
+`127.0.0.1:3000` in the execution environment. HTTP smoke checks of `/` and
+`/pipeline` both returned 200. No source changes, fake CV, user credentials or
+public tunnel were needed. This is an environment-local address, not a hosted
+public URL or the user's own computer's loopback. The optional `/api/health`
+route does not exist (404); readiness was checked on actual application pages.
