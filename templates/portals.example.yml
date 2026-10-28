@@ -1284,6 +1284,10 @@ search_queries:
 # auto-claimed from its host instead, per the table above.)
 
 # ── Built-in provider examples ────────────────────────────────────
+# Russian market: ready-to-customize config in portals.russia.example.yml;
+# setup and keyed integrations in docs/RUSSIAN_SOURCES.md.
+# Auto-detected sources: hh.ru / api.hh.ru → hh;
+# career.habr.com → habr-career (public /vacancies SSR page).
 # One commented stanza per provider in providers/. Uncomment one and adjust.
 # A provider whose host is auto-detected (company ATS or job board) only needs
 # careers_url; the rest need provider: plus any fields shown.
@@ -1668,6 +1672,16 @@ search_queries:
 #   enabled: true
 #
 # -- Job boards / aggregators  (→ job_boards:; set provider: explicitly unless the host auto-detects) --
+#
+# - name: Example HeadHunter Co
+#   careers_url: https://hh.ru/search/vacancy
+#   max_pages: 5               # default 5; maximum 20; HH caps a query at 2000 results
+#   enabled: true
+#
+# - name: Example Habr Career Co
+#   careers_url: https://career.habr.com/vacancies
+#   max_pages: 5               # default 5; maximum 50
+#   enabled: true
 #
 # - name: Amazon / AWS                    # global amazon.jobs board
 #   provider: amazon
@@ -3338,6 +3352,22 @@ tracked_companies:
 # Same title/location filtering and dedup apply.
 
 job_boards:
+
+  # Russian-market public sources. Disabled until target roles are configured.
+  - name: HeadHunter Russia
+    provider: hh
+    careers_url: https://hh.ru/search/vacancy
+    hh:
+      text: "Python"
+      area: 113               # Russia; 1 = Moscow, 2 = Saint Petersburg
+    enabled: false
+
+  - name: Habr Career Russia
+    provider: habr-career
+    careers_url: https://career.habr.com/vacancies
+    habr:
+      q: "Python"
+    enabled: false
 
   # ── Telegram channels (public) ─────────────────────────────────────
   # Public web preview at https://t.me/s/<channel>: no API key, no login.

@@ -453,6 +453,8 @@ npm run gemini:eval -- "JD text here"
 
 Сканер поставляется со **100+ компаниями**, готовыми к сканированию, и **35+ поисковыми запросами** по основным доскам вакансий. Скопируйте `templates/portals.example.yml` в `portals.yml` и добавьте свои:
 
+**Российские источники в этом форке:** hh.ru, Хабр Карьера, SuperJob (ключ приложения) и Hirify (MCP). Настройка и статус живых проверок — в [инструкции](docs/RUSSIAN_SOURCES.md); готовый пример — `templates/portals.russia.example.yml`.
+
 **AI-лаборатории:** Anthropic, OpenAI, Mistral, Cohere, LangChain, Pinecone
 **Голосовой ИИ:** ElevenLabs, PolyAI, Parloa, Hume AI, Deepgram, Vapi, Bland AI
 **AI-платформы:** Retool, Airtable, Vercel, Temporal, Glean, Arize AI

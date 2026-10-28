@@ -202,6 +202,10 @@ It reformulates your CV; it must never fabricate it. A check in code stops a PDF
 
 ## Quick Start
 
+**Russian-market sources in this fork:** HeadHunter, Habr Career, SuperJob
+(application key), and Hirify (MCP). See [setup and verification status](docs/RUSSIAN_SOURCES.md)
+and `templates/portals.russia.example.yml`.
+
 **Fastest way, one command:**
 
 ```bash
